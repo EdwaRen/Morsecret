@@ -1,0 +1,827 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1F2C87541F1C25BA00AFF859 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C87531F1C25BA00AFF859 /* AppDelegate.swift */; };
+		1F2C87561F1C25BA00AFF859 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C87551F1C25BA00AFF859 /* ViewController.swift */; };
+		1F2C87591F1C25BA00AFF859 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F2C87571F1C25BA00AFF859 /* Main.storyboard */; };
+		1F2C875C1F1C25BA00AFF859 /* Morsecret.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C875A1F1C25BA00AFF859 /* Morsecret.xcdatamodeld */; };
+		1F2C875E1F1C25BA00AFF859 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F2C875D1F1C25BA00AFF859 /* Assets.xcassets */; };
+		1F2C87611F1C25BA00AFF859 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F2C875F1F1C25BA00AFF859 /* LaunchScreen.storyboard */; };
+		1F2C876C1F1C25BA00AFF859 /* MorsecretTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C876B1F1C25BA00AFF859 /* MorsecretTests.swift */; };
+		1F2C87771F1C25BA00AFF859 /* MorsecretUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C87761F1C25BA00AFF859 /* MorsecretUITests.swift */; };
+		1F2C87891F1C2D4900AFF859 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C87881F1C2D4900AFF859 /* LoginController.swift */; };
+		1F2C878B1F1C2D9200AFF859 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C878A1F1C2D9200AFF859 /* MessagesController.swift */; };
+		1F2C878D1F1C2DC300AFF859 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C878C1F1C2DC300AFF859 /* NewMessageController.swift */; };
+		1F2C878F1F1C2DE700AFF859 /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C878E1F1C2DE700AFF859 /* LoginController+handlers.swift */; };
+		1F2C87911F1C2DFA00AFF859 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C87901F1C2DFA00AFF859 /* ChatLogController.swift */; };
+		1F2C87931F1C2E1A00AFF859 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C87921F1C2E1A00AFF859 /* User.swift */; };
+		1F2C87951F1C2E2E00AFF859 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C87941F1C2E2E00AFF859 /* Message.swift */; };
+		1F2C87971F1C2E4100AFF859 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C87961F1C2E4100AFF859 /* Extensions.swift */; };
+		1F2C87991F1C2E6800AFF859 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C87981F1C2E6800AFF859 /* UserCell.swift */; };
+		1F2C879B1F1C2EAF00AFF859 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C879A1F1C2EAF00AFF859 /* ChatMessageCell.swift */; };
+		1F2C879D1F1C2EC700AFF859 /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C879C1F1C2EC700AFF859 /* ChatInputContainerView.swift */; };
+		1F2C879F1F1C546500AFF859 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F2C879E1F1C546500AFF859 /* GoogleService-Info.plist */; };
+		A4973AA8826B7C0E86065673 /* Pods_MorsecretTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCAAF78FB20482BDAA0CBA36 /* Pods_MorsecretTests.framework */; };
+		CDE140B551E1ABCF2FA88002 /* Pods_MorsecretUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 409FDF685F3B8764E7CAD62B /* Pods_MorsecretUITests.framework */; };
+		DD7A859D7259869908FB17AA /* Pods_Morsecret.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B3C4AA4C0E3D696CFF5013 /* Pods_Morsecret.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1F2C87681F1C25BA00AFF859 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F2C87481F1C25BA00AFF859 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F2C874F1F1C25BA00AFF859;
+			remoteInfo = Morsecret;
+		};
+		1F2C87731F1C25BA00AFF859 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1F2C87481F1C25BA00AFF859 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F2C874F1F1C25BA00AFF859;
+			remoteInfo = Morsecret;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1F2C87501F1C25BA00AFF859 /* Morsecret.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Morsecret.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F2C87531F1C25BA00AFF859 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1F2C87551F1C25BA00AFF859 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1F2C87581F1C25BA00AFF859 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1F2C875B1F1C25BA00AFF859 /* Morsecret.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Morsecret.xcdatamodel; sourceTree = "<group>"; };
+		1F2C875D1F1C25BA00AFF859 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1F2C87601F1C25BA00AFF859 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1F2C87621F1C25BA00AFF859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F2C87671F1C25BA00AFF859 /* MorsecretTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MorsecretTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F2C876B1F1C25BA00AFF859 /* MorsecretTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorsecretTests.swift; sourceTree = "<group>"; };
+		1F2C876D1F1C25BA00AFF859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F2C87721F1C25BA00AFF859 /* MorsecretUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MorsecretUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F2C87761F1C25BA00AFF859 /* MorsecretUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorsecretUITests.swift; sourceTree = "<group>"; };
+		1F2C87781F1C25BA00AFF859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F2C87881F1C2D4900AFF859 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		1F2C878A1F1C2D9200AFF859 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
+		1F2C878C1F1C2DC300AFF859 /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
+		1F2C878E1F1C2DE700AFF859 /* LoginController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
+		1F2C87901F1C2DFA00AFF859 /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
+		1F2C87921F1C2E1A00AFF859 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1F2C87941F1C2E2E00AFF859 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		1F2C87961F1C2E4100AFF859 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1F2C87981F1C2E6800AFF859 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		1F2C879A1F1C2EAF00AFF859 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		1F2C879C1F1C2EC700AFF859 /* ChatInputContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatInputContainerView.swift; sourceTree = "<group>"; };
+		1F2C879E1F1C546500AFF859 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		409FDF685F3B8764E7CAD62B /* Pods_MorsecretUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MorsecretUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		789C4B54FCA81940214E2723 /* Pods-MorsecretUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorsecretUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MorsecretUITests/Pods-MorsecretUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7BAA901A2836CDA8A90E7DD8 /* Pods-MorsecretUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorsecretUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MorsecretUITests/Pods-MorsecretUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7D41FB604641F374C15C47EF /* Pods-MorsecretTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorsecretTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MorsecretTests/Pods-MorsecretTests.release.xcconfig"; sourceTree = "<group>"; };
+		89B3C4AA4C0E3D696CFF5013 /* Pods_Morsecret.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Morsecret.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D6958082F3DE267D45FC443 /* Pods-MorsecretTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorsecretTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MorsecretTests/Pods-MorsecretTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A25E8CE0994A34D4AF11BD6F /* Pods-Morsecret.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Morsecret.release.xcconfig"; path = "Pods/Target Support Files/Pods-Morsecret/Pods-Morsecret.release.xcconfig"; sourceTree = "<group>"; };
+		BCAAF78FB20482BDAA0CBA36 /* Pods_MorsecretTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MorsecretTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF4F648EF6CB0D1649012A64 /* Pods-Morsecret.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Morsecret.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Morsecret/Pods-Morsecret.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1F2C874D1F1C25BA00AFF859 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD7A859D7259869908FB17AA /* Pods_Morsecret.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F2C87641F1C25BA00AFF859 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4973AA8826B7C0E86065673 /* Pods_MorsecretTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F2C876F1F1C25BA00AFF859 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDE140B551E1ABCF2FA88002 /* Pods_MorsecretUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1F2C87471F1C25BA00AFF859 = {
+			isa = PBXGroup;
+			children = (
+				1F2C87521F1C25BA00AFF859 /* Morsecret */,
+				1F2C876A1F1C25BA00AFF859 /* MorsecretTests */,
+				1F2C87751F1C25BA00AFF859 /* MorsecretUITests */,
+				1F2C87511F1C25BA00AFF859 /* Products */,
+				D0C9AAB36B6A7CB02FB645B7 /* Pods */,
+				7CA853B7445A371662BD8EE1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1F2C87511F1C25BA00AFF859 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1F2C87501F1C25BA00AFF859 /* Morsecret.app */,
+				1F2C87671F1C25BA00AFF859 /* MorsecretTests.xctest */,
+				1F2C87721F1C25BA00AFF859 /* MorsecretUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1F2C87521F1C25BA00AFF859 /* Morsecret */ = {
+			isa = PBXGroup;
+			children = (
+				1F2C87871F1C261D00AFF859 /* Controller */,
+				1F2C87861F1C261800AFF859 /* Model */,
+				1F2C87851F1C260E00AFF859 /* Helpers */,
+				1F2C87841F1C260000AFF859 /* View */,
+				1F2C87531F1C25BA00AFF859 /* AppDelegate.swift */,
+				1F2C87551F1C25BA00AFF859 /* ViewController.swift */,
+				1F2C87571F1C25BA00AFF859 /* Main.storyboard */,
+				1F2C875D1F1C25BA00AFF859 /* Assets.xcassets */,
+				1F2C879E1F1C546500AFF859 /* GoogleService-Info.plist */,
+				1F2C875F1F1C25BA00AFF859 /* LaunchScreen.storyboard */,
+				1F2C87621F1C25BA00AFF859 /* Info.plist */,
+				1F2C875A1F1C25BA00AFF859 /* Morsecret.xcdatamodeld */,
+			);
+			path = Morsecret;
+			sourceTree = "<group>";
+		};
+		1F2C876A1F1C25BA00AFF859 /* MorsecretTests */ = {
+			isa = PBXGroup;
+			children = (
+				1F2C876B1F1C25BA00AFF859 /* MorsecretTests.swift */,
+				1F2C876D1F1C25BA00AFF859 /* Info.plist */,
+			);
+			path = MorsecretTests;
+			sourceTree = "<group>";
+		};
+		1F2C87751F1C25BA00AFF859 /* MorsecretUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1F2C87761F1C25BA00AFF859 /* MorsecretUITests.swift */,
+				1F2C87781F1C25BA00AFF859 /* Info.plist */,
+			);
+			path = MorsecretUITests;
+			sourceTree = "<group>";
+		};
+		1F2C87841F1C260000AFF859 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F2C87981F1C2E6800AFF859 /* UserCell.swift */,
+				1F2C879A1F1C2EAF00AFF859 /* ChatMessageCell.swift */,
+				1F2C879C1F1C2EC700AFF859 /* ChatInputContainerView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1F2C87851F1C260E00AFF859 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1F2C87961F1C2E4100AFF859 /* Extensions.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		1F2C87861F1C261800AFF859 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F2C87921F1C2E1A00AFF859 /* User.swift */,
+				1F2C87941F1C2E2E00AFF859 /* Message.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		1F2C87871F1C261D00AFF859 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1F2C87881F1C2D4900AFF859 /* LoginController.swift */,
+				1F2C878A1F1C2D9200AFF859 /* MessagesController.swift */,
+				1F2C878C1F1C2DC300AFF859 /* NewMessageController.swift */,
+				1F2C878E1F1C2DE700AFF859 /* LoginController+handlers.swift */,
+				1F2C87901F1C2DFA00AFF859 /* ChatLogController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		7CA853B7445A371662BD8EE1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				89B3C4AA4C0E3D696CFF5013 /* Pods_Morsecret.framework */,
+				BCAAF78FB20482BDAA0CBA36 /* Pods_MorsecretTests.framework */,
+				409FDF685F3B8764E7CAD62B /* Pods_MorsecretUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0C9AAB36B6A7CB02FB645B7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BF4F648EF6CB0D1649012A64 /* Pods-Morsecret.debug.xcconfig */,
+				A25E8CE0994A34D4AF11BD6F /* Pods-Morsecret.release.xcconfig */,
+				9D6958082F3DE267D45FC443 /* Pods-MorsecretTests.debug.xcconfig */,
+				7D41FB604641F374C15C47EF /* Pods-MorsecretTests.release.xcconfig */,
+				7BAA901A2836CDA8A90E7DD8 /* Pods-MorsecretUITests.debug.xcconfig */,
+				789C4B54FCA81940214E2723 /* Pods-MorsecretUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1F2C874F1F1C25BA00AFF859 /* Morsecret */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F2C877B1F1C25BA00AFF859 /* Build configuration list for PBXNativeTarget "Morsecret" */;
+			buildPhases = (
+				99A54CDDD64737E0AB199CFD /* [CP] Check Pods Manifest.lock */,
+				1F2C874C1F1C25BA00AFF859 /* Sources */,
+				1F2C874D1F1C25BA00AFF859 /* Frameworks */,
+				1F2C874E1F1C25BA00AFF859 /* Resources */,
+				BA30F38DDFC65A8CD264B4C7 /* [CP] Embed Pods Frameworks */,
+				565EE4C492ACB9CA6AA15CB5 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Morsecret;
+			productName = Morsecret;
+			productReference = 1F2C87501F1C25BA00AFF859 /* Morsecret.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1F2C87661F1C25BA00AFF859 /* MorsecretTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F2C877E1F1C25BA00AFF859 /* Build configuration list for PBXNativeTarget "MorsecretTests" */;
+			buildPhases = (
+				B9A7B7E9B0F6D7BA560CDDD2 /* [CP] Check Pods Manifest.lock */,
+				1F2C87631F1C25BA00AFF859 /* Sources */,
+				1F2C87641F1C25BA00AFF859 /* Frameworks */,
+				1F2C87651F1C25BA00AFF859 /* Resources */,
+				8705C72849778A62679418DF /* [CP] Embed Pods Frameworks */,
+				8F6D7CB0BBF10E838C3B691F /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1F2C87691F1C25BA00AFF859 /* PBXTargetDependency */,
+			);
+			name = MorsecretTests;
+			productName = MorsecretTests;
+			productReference = 1F2C87671F1C25BA00AFF859 /* MorsecretTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1F2C87711F1C25BA00AFF859 /* MorsecretUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F2C87811F1C25BA00AFF859 /* Build configuration list for PBXNativeTarget "MorsecretUITests" */;
+			buildPhases = (
+				396940A9C1F17F58830E10D4 /* [CP] Check Pods Manifest.lock */,
+				1F2C876E1F1C25BA00AFF859 /* Sources */,
+				1F2C876F1F1C25BA00AFF859 /* Frameworks */,
+				1F2C87701F1C25BA00AFF859 /* Resources */,
+				71B5B5A01168218FD919D72B /* [CP] Embed Pods Frameworks */,
+				52B88268FD6A2FE65C17054F /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1F2C87741F1C25BA00AFF859 /* PBXTargetDependency */,
+			);
+			name = MorsecretUITests;
+			productName = MorsecretUITests;
+			productReference = 1F2C87721F1C25BA00AFF859 /* MorsecretUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1F2C87481F1C25BA00AFF859 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Secretapp;
+				TargetAttributes = {
+					1F2C874F1F1C25BA00AFF859 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 4BA7JNM5VD;
+						ProvisioningStyle = Automatic;
+					};
+					1F2C87661F1C25BA00AFF859 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 4BA7JNM5VD;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1F2C874F1F1C25BA00AFF859;
+					};
+					1F2C87711F1C25BA00AFF859 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 4BA7JNM5VD;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1F2C874F1F1C25BA00AFF859;
+					};
+				};
+			};
+			buildConfigurationList = 1F2C874B1F1C25BA00AFF859 /* Build configuration list for PBXProject "Morsecret" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1F2C87471F1C25BA00AFF859;
+			productRefGroup = 1F2C87511F1C25BA00AFF859 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1F2C874F1F1C25BA00AFF859 /* Morsecret */,
+				1F2C87661F1C25BA00AFF859 /* MorsecretTests */,
+				1F2C87711F1C25BA00AFF859 /* MorsecretUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1F2C874E1F1C25BA00AFF859 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F2C87611F1C25BA00AFF859 /* LaunchScreen.storyboard in Resources */,
+				1F2C879F1F1C546500AFF859 /* GoogleService-Info.plist in Resources */,
+				1F2C875E1F1C25BA00AFF859 /* Assets.xcassets in Resources */,
+				1F2C87591F1C25BA00AFF859 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F2C87651F1C25BA00AFF859 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F2C87701F1C25BA00AFF859 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		396940A9C1F17F58830E10D4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		52B88268FD6A2FE65C17054F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MorsecretUITests/Pods-MorsecretUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		565EE4C492ACB9CA6AA15CB5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Morsecret/Pods-Morsecret-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		71B5B5A01168218FD919D72B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MorsecretUITests/Pods-MorsecretUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8705C72849778A62679418DF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MorsecretTests/Pods-MorsecretTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F6D7CB0BBF10E838C3B691F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MorsecretTests/Pods-MorsecretTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99A54CDDD64737E0AB199CFD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B9A7B7E9B0F6D7BA560CDDD2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BA30F38DDFC65A8CD264B4C7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Morsecret/Pods-Morsecret-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1F2C874C1F1C25BA00AFF859 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F2C87911F1C2DFA00AFF859 /* ChatLogController.swift in Sources */,
+				1F2C878B1F1C2D9200AFF859 /* MessagesController.swift in Sources */,
+				1F2C875C1F1C25BA00AFF859 /* Morsecret.xcdatamodeld in Sources */,
+				1F2C878D1F1C2DC300AFF859 /* NewMessageController.swift in Sources */,
+				1F2C87891F1C2D4900AFF859 /* LoginController.swift in Sources */,
+				1F2C879D1F1C2EC700AFF859 /* ChatInputContainerView.swift in Sources */,
+				1F2C87931F1C2E1A00AFF859 /* User.swift in Sources */,
+				1F2C879B1F1C2EAF00AFF859 /* ChatMessageCell.swift in Sources */,
+				1F2C878F1F1C2DE700AFF859 /* LoginController+handlers.swift in Sources */,
+				1F2C87951F1C2E2E00AFF859 /* Message.swift in Sources */,
+				1F2C87991F1C2E6800AFF859 /* UserCell.swift in Sources */,
+				1F2C87561F1C25BA00AFF859 /* ViewController.swift in Sources */,
+				1F2C87971F1C2E4100AFF859 /* Extensions.swift in Sources */,
+				1F2C87541F1C25BA00AFF859 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F2C87631F1C25BA00AFF859 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F2C876C1F1C25BA00AFF859 /* MorsecretTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F2C876E1F1C25BA00AFF859 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F2C87771F1C25BA00AFF859 /* MorsecretUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1F2C87691F1C25BA00AFF859 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1F2C874F1F1C25BA00AFF859 /* Morsecret */;
+			targetProxy = 1F2C87681F1C25BA00AFF859 /* PBXContainerItemProxy */;
+		};
+		1F2C87741F1C25BA00AFF859 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1F2C874F1F1C25BA00AFF859 /* Morsecret */;
+			targetProxy = 1F2C87731F1C25BA00AFF859 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1F2C87571F1C25BA00AFF859 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F2C87581F1C25BA00AFF859 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1F2C875F1F1C25BA00AFF859 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F2C87601F1C25BA00AFF859 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1F2C87791F1C25BA00AFF859 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1F2C877A1F1C25BA00AFF859 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1F2C877C1F1C25BA00AFF859 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF4F648EF6CB0D1649012A64 /* Pods-Morsecret.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4BA7JNM5VD;
+				INFOPLIST_FILE = Morsecret/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Edward.Morsecret;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		1F2C877D1F1C25BA00AFF859 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A25E8CE0994A34D4AF11BD6F /* Pods-Morsecret.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4BA7JNM5VD;
+				INFOPLIST_FILE = Morsecret/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Edward.Morsecret;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		1F2C877F1F1C25BA00AFF859 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D6958082F3DE267D45FC443 /* Pods-MorsecretTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4BA7JNM5VD;
+				INFOPLIST_FILE = MorsecretTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Edward.MorsecretTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Morsecret.app/Morsecret";
+			};
+			name = Debug;
+		};
+		1F2C87801F1C25BA00AFF859 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D41FB604641F374C15C47EF /* Pods-MorsecretTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4BA7JNM5VD;
+				INFOPLIST_FILE = MorsecretTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Edward.MorsecretTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Morsecret.app/Morsecret";
+			};
+			name = Release;
+		};
+		1F2C87821F1C25BA00AFF859 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BAA901A2836CDA8A90E7DD8 /* Pods-MorsecretUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 4BA7JNM5VD;
+				INFOPLIST_FILE = MorsecretUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Edward.MorsecretUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Morsecret;
+			};
+			name = Debug;
+		};
+		1F2C87831F1C25BA00AFF859 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 789C4B54FCA81940214E2723 /* Pods-MorsecretUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 4BA7JNM5VD;
+				INFOPLIST_FILE = MorsecretUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Edward.MorsecretUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Morsecret;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1F2C874B1F1C25BA00AFF859 /* Build configuration list for PBXProject "Morsecret" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F2C87791F1C25BA00AFF859 /* Debug */,
+				1F2C877A1F1C25BA00AFF859 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1F2C877B1F1C25BA00AFF859 /* Build configuration list for PBXNativeTarget "Morsecret" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F2C877C1F1C25BA00AFF859 /* Debug */,
+				1F2C877D1F1C25BA00AFF859 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1F2C877E1F1C25BA00AFF859 /* Build configuration list for PBXNativeTarget "MorsecretTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F2C877F1F1C25BA00AFF859 /* Debug */,
+				1F2C87801F1C25BA00AFF859 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1F2C87811F1C25BA00AFF859 /* Build configuration list for PBXNativeTarget "MorsecretUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F2C87821F1C25BA00AFF859 /* Debug */,
+				1F2C87831F1C25BA00AFF859 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1F2C875A1F1C25BA00AFF859 /* Morsecret.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1F2C875B1F1C25BA00AFF859 /* Morsecret.xcdatamodel */,
+			);
+			currentVersion = 1F2C875B1F1C25BA00AFF859 /* Morsecret.xcdatamodel */;
+			path = Morsecret.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 1F2C87481F1C25BA00AFF859 /* Project object */;
+}
