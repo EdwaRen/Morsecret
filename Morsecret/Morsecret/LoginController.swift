@@ -10,7 +10,8 @@ import UIKit
 import Firebase
 
 class LoginController: UIViewController {
-    
+    var scrollView: UIScrollView!
+    var imageView: UIImageView!
     var messagesController: MessagesController?
     
     let inputsContainerView: UIView = {
@@ -103,11 +104,33 @@ class LoginController: UIViewController {
         return tf
     }()
     
+    let profileImageInstructionView: UIView = {
+        let view = UIView()
+//        view.backgroundColor = UIColor.white
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view;
+    }()
+    
+    let profileInstructionLabel : UILabel = {
+        let myLabel = UILabel()
+        myLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        myLabel.text = "Add Profile Image"
+        myLabel.textColor = UIColor.white
+        myLabel.textAlignment = .center
+        myLabel.numberOfLines = 1
+        myLabel.font = myLabel.font.withSize(10);
+        
+        
+        return myLabel
+    }()
+    
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "gameofthrones_splash")
+        imageView.image = UIImage(named: "user2")
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
         imageView.isUserInteractionEnabled = true
@@ -151,10 +174,27 @@ class LoginController: UIViewController {
         
         view.backgroundColor = UIColor(r: 61, g: 91, b: 151)
         
+//        scrollView = UIScrollView(frame: view.bounds)
+////        scrollView.backgroundColor = UIColor.black
+//        scrollView.isScrollEnabled = true
+//        
+//        
+//        scrollView.addSubview(inputsContainerView)
+//        scrollView.addSubview(loginRegisterButton)
+//        scrollView.addSubview(profileImageView)
+//        scrollView.addSubview(loginRegisterSegmentedControl)
+//
+//        view.addSubview(scrollView)
+    
+        
+        
         view.addSubview(inputsContainerView)
         view.addSubview(loginRegisterButton)
-        view.addSubview(profileImageView)
+        view.addSubview(profileImageInstructionView)
         view.addSubview(loginRegisterSegmentedControl)
+        view.addSubview(profileImageView)
+        view.addSubview(profileInstructionLabel)
+
         
         setupInputsContainerView()
         setupLoginRegisterButton()
@@ -172,11 +212,51 @@ class LoginController: UIViewController {
     }
     
     func setupProfileImageView() {
+        //So much blood, sweat, and tears have been shed to display a tiny label :'(
+        
+        
         //need x, y, width, height constraints
-        profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImageView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -12).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+//        profileImageInstructionView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -64).isActive = true
+//        profileImageInstructionView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -12).isActive = true
+//        profileImageInstructionView.widthAnchor.constraint(equalToConstant: 192).isActive = true
+//        profileImageInstructionView.heightAnchor.constraint(equalToConstant: 64).isActive = true
+        
+        profileInstructionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        profileInstructionLabel.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -8).isActive = true
+        profileInstructionLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        profileInstructionLabel.heightAnchor.constraint(equalToConstant: 18).isActive = true
+        
+        
+        
+        profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+        profileImageView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -24).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 64).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 64).isActive = true
+        
+        
+        
+        
+//        profileImageInstructionView.addSubview(profileImageView)
+//        profileImageInstructionView.addSubview(profileInstructionLabel)
+        
+        
+        //Adding imageview and label constraints
+        
+//        profileImageView.leftAnchor.constraint(equalTo: profileImageInstructionView.leftAnchor).isActive = true
+//        profileImageView.topAnchor.constraint(equalTo: profileImageInstructionView.topAnchor).isActive = true
+//        profileImageInstructionView.widthAnchor.constraint(equalTo: profileImageInstructionView.widthAnchor)
+//        profileImageInstructionView.heightAnchor.constraint(equalTo: profileImageInstructionView.heightAnchor)
+
+//        print(profileImageView.frame)
+//        profileImageView.widthAnchor.constraint(equalToConstant: 64).isActive = true
+//        profileImageView.heightAnchor.constraint(equalToConstant: 64).isActive = true
+        
+//        profileInstructionLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor).isActive = true
+//        profileInstructionLabel.topAnchor.constraint(equalTo: profileImageInstructionView.topAnchor).isActive = true
+//        profileInstructionLabel.widthAnchor.constraint(equalToConstant: 128).isActive = true
+//        profileInstructionLabel.heightAnchor.constraint(equalToConstant: 64).isActive = true
+
+
     }
     
     var inputsContainerViewHeightAnchor: NSLayoutConstraint?
@@ -187,7 +267,7 @@ class LoginController: UIViewController {
     func setupInputsContainerView() { //sets up all the constraints
         //need x, y, width, height constraints
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -80).isActive = true;
         inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
         inputsContainerViewHeightAnchor = inputsContainerView.heightAnchor.constraint(equalToConstant: 150)
         inputsContainerViewHeightAnchor?.isActive = true

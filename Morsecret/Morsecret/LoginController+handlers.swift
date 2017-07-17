@@ -24,11 +24,11 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
                 return
             }
             
-            self.handleLogin()
             
             guard let uid = user?.uid else {
                 return
             }
+//            self.handleLogin()
             
             //successfully authenticated user
             let imageName = UUID().uuidString
@@ -52,6 +52,8 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
                         self.registerUserIntoDatabaseWithUID(uid, values: values as [String : AnyObject])
                     }
                 })
+            } else {
+                
             }
         })
     }
@@ -66,9 +68,10 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
                 print(err!)
                 return
             }
+            print(values)
             
-            //            self.messagesController?.fetchUserAndSetupNavBarTitle()
-            //            self.messagesController?.navigationItem.title = values["name"] as? String
+//                        self.messagesController?.fetchUserAndSetupNavBarTitle()
+//                        self.messagesController?.navigationItem.title = values["name"] as? String
             let user = User(dictionary: values)
             self.messagesController?.setupNavBarWithUser(user)
             

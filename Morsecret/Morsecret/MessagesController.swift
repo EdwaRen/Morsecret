@@ -42,7 +42,7 @@ class MessagesController: UITableViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         
-        let image = UIImage(named: "new_message_icon")
+        let image = UIImage(named: "newMessage1")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleNewMessage))
         
         checkIfUserIsLoggedIn()
@@ -210,10 +210,13 @@ class MessagesController: UITableViewController {
     func fetchUserAndSetupNavBarTitle() {
         guard let uid = FIRAuth.auth()?.currentUser?.uid else {
             //for some reason uid = nil
+            print("uid is null")
             return
         }
         
         FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            print(snapshot)
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 //                self.navigationItem.title = dictionary["name"] as? String
