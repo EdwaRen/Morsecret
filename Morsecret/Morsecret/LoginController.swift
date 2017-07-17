@@ -152,7 +152,7 @@ class LoginController: UIViewController {
         loginRegisterButton.setTitle(title, for: UIControlState())
         
         // change height of inputContainerView, but how???
-        inputsContainerViewHeightAnchor?.constant = loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? 100 : 150
+        inputsContainerViewHeightAnchor?.constant = loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? 80 : 120
         
         // change height of nameTextField
         nameTextFieldHeightAnchor?.isActive = false
@@ -229,7 +229,7 @@ class LoginController: UIViewController {
         
         
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
-        profileImageView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -24).isActive = true
+        profileImageView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -28).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 64).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 64).isActive = true
         
@@ -269,7 +269,7 @@ class LoginController: UIViewController {
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -80).isActive = true;
         inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
-        inputsContainerViewHeightAnchor = inputsContainerView.heightAnchor.constraint(equalToConstant: 150)
+        inputsContainerViewHeightAnchor = inputsContainerView.heightAnchor.constraint(equalToConstant: 120)
         inputsContainerViewHeightAnchor?.isActive = true
         
         //Adds in previously declared UIObjects
@@ -323,11 +323,20 @@ class LoginController: UIViewController {
         loginRegisterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         loginRegisterButton.topAnchor.constraint(equalTo: inputsContainerView.bottomAnchor, constant: 12).isActive = true
         loginRegisterButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-        loginRegisterButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        loginRegisterButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return (true)
     }
 }
 
