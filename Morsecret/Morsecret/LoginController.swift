@@ -59,7 +59,7 @@ class LoginController: UIViewController {
             print("Form is not valid")
             return
         }
-        
+        print("authenticating")
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             
             if error != nil {

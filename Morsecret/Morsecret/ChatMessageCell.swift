@@ -72,10 +72,12 @@ class ChatMessageCell: UICollectionViewCell {
     }()
     
     static let blueColor = UIColor(r: 0, g: 137, b: 249)
+    static let redColor = UIColor(r: 0, g: 137, b: 249)
+
     
     let bubbleView: UIView = {
         let view = UIView()
-        view.backgroundColor = blueColor
+        view.backgroundColor = UIColor.red
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 16
         view.layer.masksToBounds = true
@@ -88,6 +90,15 @@ class ChatMessageCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 16
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
+    let morseImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "morse_Bubble")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -124,6 +135,7 @@ class ChatMessageCell: UICollectionViewCell {
         addSubview(bubbleView)
         addSubview(textView)
         addSubview(profileImageView)
+        addSubview(morseImageView)
         
         bubbleView.addSubview(messageImageView)
         messageImageView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor).isActive = true
@@ -151,7 +163,12 @@ class ChatMessageCell: UICollectionViewCell {
         profileImageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
         
-        //x,y,w,h
+        
+        morseImageView.leftAnchor.constraint(equalTo: messageImageView.rightAnchor, constant: 8).isActive = true
+        morseImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        morseImageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
+        morseImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        
         
         bubbleViewRightAnchor = bubbleView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
         

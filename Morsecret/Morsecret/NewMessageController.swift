@@ -25,7 +25,7 @@ class NewMessageController: UITableViewController, UISearchBarDelegate {
         searchBar.placeholder = "Search Users"
 
         searchBar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: -30)
-        searchBar.showsCancelButton = true
+//        searchBar.showsCancelButton = true
         searchBar.delegate = self as! UISearchBarDelegate
         navigationItem.titleView = searchBar
         
@@ -51,7 +51,8 @@ class NewMessageController: UITableViewController, UISearchBarDelegate {
   
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         print("search clicked2")
-        
+        self.users.removeAll()
+
         searchTextUser = searchBar.text!;
         
         fetchUser()
@@ -63,7 +64,11 @@ class NewMessageController: UITableViewController, UISearchBarDelegate {
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let user = User(dictionary: dictionary)
                 user.id = snapshot.key
-                if (user.email == self.searchTextUser) {
+                let indexEmail = user.email?.index((user.email?.startIndex)!, offsetBy: self.searchTextUser.characters.count)
+                let indexName = user.name?.index((user.name?.startIndex)!, offsetBy: self.searchTextUser.characters.count)
+
+                
+                if (user.email?.substring(to: indexEmail!) == self.searchTextUser || user.name?.substring(to: indexName!) == self.searchTextUser) && self.searchTextUser.characters.count > 1  {
                     self.users.append(user)
                 }
                 //this will crash because of background thread, so lets use dispatch_async to fix

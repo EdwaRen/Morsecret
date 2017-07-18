@@ -13,6 +13,19 @@ import AVFoundation
 
 class ChatLogController: UICollectionViewController, UITextFieldDelegate, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    var attemptedVideo : Bool? = false {
+        didSet {
+//            let myTim = Timer(timeInterval: 1.5, target: self, selector: Selector("showVideoMessageError()"), userInfo: nil, repeats: true);
+            let myTimer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(ChatLogController.showVideoMessageError), userInfo: nil, repeats: false)
+
+            print("Detected change in attemptedVideo")
+//            showVideoMessageError()
+        }
+        willSet {
+            print("Detected change in attemptedVideo willset ")
+//            showVideoMessageError()
+        }
+    }
     var user: User? {
         didSet {
             navigationItem.title = user?.name
@@ -58,7 +71,12 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+//        let alertController = UIAlertController(title: "Video Transfer Not Supported", message:
+//            "Try limiting communication to text or images", preferredStyle: UIAlertControllerStyle.alert)
+//        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+//        
+//        self.present(alertController, animated: true, completion: nil)
         collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         //        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
         collectionView?.alwaysBounceVertical = true
@@ -89,8 +107,16 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         if let videoUrl = info[UIImagePickerControllerMediaURL] as? URL {
-            //we selected a video
-            handleVideoSelectedForUrl(videoUrl)
+            if (attemptedVideo)! {
+                attemptedVideo = false
+            } else {
+                attemptedVideo = true
+            }
+            print("video selected")
+            
+            //Video sending is rather buggy, so only image and chat sending is supported
+            
+//            handleVideoSelectedForUrl(videoUrl)
         } else {
             //we selected an image
             handleImageSelectedForInfo(info as [String : AnyObject])
@@ -99,36 +125,51 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         dismiss(animated: true, completion: nil)
     }
     
+    func showVideoMessageError() {
+        print("SHowing alert controller")
+//        
+//        let myAlert = AlertHelper()
+//        myAlert.showAlert(fromController: self)
+        
+        let alertController = UIAlertController(title: "Video Transfer Not Supported", message:
+            "Try limiting communication to text or images", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     fileprivate func handleVideoSelectedForUrl(_ url: URL) {
-        let filename = UUID().uuidString + ".mov"
-        let uploadTask = FIRStorage.storage().reference().child("message_movies").child(filename).putFile(url, metadata: nil, completion: { (metadata, error) in
-            
-            if error != nil {
-                print("Failed upload of video:", error!)
-                return
-            }
-            
-            if let videoUrl = metadata?.downloadURL()?.absoluteString {
-                if let thumbnailImage = self.thumbnailImageForFileUrl(url) {
-                    
-                    self.uploadToFirebaseStorageUsingImage(thumbnailImage, completion: { (imageUrl) in
-                        let properties: [String: AnyObject] = ["imageUrl": imageUrl as AnyObject, "imageWidth": thumbnailImage.size.width as AnyObject, "imageHeight": thumbnailImage.size.height as AnyObject, "videoUrl": videoUrl as AnyObject]
-                        self.sendMessageWithProperties(properties)
-                        
-                    })
-                }
-            }
-        })
-        
-        uploadTask.observe(.progress) { (snapshot) in
-            if let completedUnitCount = snapshot.progress?.completedUnitCount {
-                self.navigationItem.title = String(completedUnitCount)
-            }
-        }
-        
-        uploadTask.observe(.success) { (snapshot) in
-            self.navigationItem.title = self.user?.name
-        }
+//        let myTim = Timer(timeInterval: 0.5, target: self, selector: Selector("showVideoMessageError()"), userInfo: nil, repeats: true);
+
+//        let filename = UUID().uuidString + ".mov"
+//        let uploadTask = FIRStorage.storage().reference().child("message_movies").child(filename).putFile(url, metadata: nil, completion: { (metadata, error) in
+//            
+//            if error != nil {
+//                print("Failed upload of video:", error!)
+//                return
+//            }
+//            
+//            if let videoUrl = metadata?.downloadURL()?.absoluteString {
+//                if let thumbnailImage = self.thumbnailImageForFileUrl(url) {
+//                    
+//                    self.uploadToFirebaseStorageUsingImage(thumbnailImage, completion: { (imageUrl) in
+//                        let properties: [String: AnyObject] = ["imageUrl": imageUrl as AnyObject, "imageWidth": thumbnailImage.size.width as AnyObject, "imageHeight": thumbnailImage.size.height as AnyObject, "videoUrl": videoUrl as AnyObject]
+//                        self.sendMessageWithProperties(properties)
+//                        
+//                    })
+//                }
+//            }
+//        })
+//        
+//        uploadTask.observe(.progress) { (snapshot) in
+//            if let completedUnitCount = snapshot.progress?.completedUnitCount {
+//                self.navigationItem.title = String(completedUnitCount)
+//            }
+//        }
+//        
+//        uploadTask.observe(.success) { (snapshot) in
+//            self.navigationItem.title = self.user?.name
+//        }
     }
     
     fileprivate func thumbnailImageForFileUrl(_ fileUrl: URL) -> UIImage? {
@@ -270,6 +311,16 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ChatMessageCell
+
+        print("Cell tap detected", messages[indexPath.item].text)
+//        let url = thumbnailFileURLS[indexPath.item]
+//        if UIApplication.sharedApplication().canOpenURL(url) {
+//            UIApplication.sharedApplication().openURL(url)
+//        }
+    }
+    
     fileprivate func setupCell(_ cell: ChatMessageCell, message: Message) {
         if let profileImageUrl = self.user?.profileImageUrl {
             cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
@@ -341,6 +392,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         if (inputContainerView.inputTextField.text != "") {
             inputContainerView.inputTextField.text = ""
             sendMessageWithProperties(properties as [String : AnyObject])
+        } else {
+            print("User has attempted to send message of null")
         }
     }
     
