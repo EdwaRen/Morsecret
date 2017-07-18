@@ -37,6 +37,15 @@ class LoginController: UIViewController {
         return button
     }()
     
+    let iPhoneMessageImage: UIImageView = {
+        let imageView = UIImageView()
+        
+        imageView.image = UIImage(named: "warning")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     func handleLoginRegister() {
         if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
             handleLogin()

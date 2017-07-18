@@ -338,7 +338,10 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     
     func handleSend() {
         let properties = ["text": inputContainerView.inputTextField.text!]
-        sendMessageWithProperties(properties as [String : AnyObject])
+        if (inputContainerView.inputTextField.text != "") {
+            inputContainerView.inputTextField.text = ""
+            sendMessageWithProperties(properties as [String : AnyObject])
+        }
     }
     
     fileprivate func sendMessageWithImageUrl(_ imageUrl: String, image: UIImage) {

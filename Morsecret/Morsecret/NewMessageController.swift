@@ -9,18 +9,50 @@
 import UIKit
 import Firebase
 
-class NewMessageController: UITableViewController {
+class NewMessageController: UITableViewController, UISearchBarDelegate {
     
     let cellId = "cellId"
     
     var users = [User]()
     
+    lazy var searchBar:UISearchBar = UISearchBar();
+    var searchTextUser:String = "";
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        searchBar.placeholder = "Search Users"
+
+        searchBar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: -30)
+        searchBar.showsCancelButton = true
+        searchBar.delegate = self as! UISearchBarDelegate
+        navigationItem.titleView = searchBar
+        
+        
         
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
+        
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.text = ""
+    }
+    
+    // called when search button is clicked
+    func searchBarSearchButtonClicked( searchBar: UISearchBar!) {
+        print("search clicked1")
+        searchTextUser = searchBar.text!;
+
+        fetchUser()
+
+        self.view.endEditing(true)
+    }
+  
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        print("search clicked2")
+        
+        searchTextUser = searchBar.text!;
         
         fetchUser()
     }
@@ -31,12 +63,14 @@ class NewMessageController: UITableViewController {
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let user = User(dictionary: dictionary)
                 user.id = snapshot.key
-                self.users.append(user)
-                
+                if (user.email == self.searchTextUser) {
+                    self.users.append(user)
+                }
                 //this will crash because of background thread, so lets use dispatch_async to fix
                 DispatchQueue.main.async(execute: {
                     self.tableView.reloadData()
                 })
+                    
                 
                 //                user.name = dictionary["name"]
             }
@@ -78,6 +112,12 @@ class NewMessageController: UITableViewController {
             let user = self.users[indexPath.row]
             self.messagesController?.showChatControllerForUser(user)
         }
+    }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return (true)
     }
     
 }
