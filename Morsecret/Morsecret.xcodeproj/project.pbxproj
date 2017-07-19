@@ -28,6 +28,7 @@
 		1F2C879D1F1C2EC700AFF859 /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C879C1F1C2EC700AFF859 /* ChatInputContainerView.swift */; };
 		1F2C879F1F1C546500AFF859 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F2C879E1F1C546500AFF859 /* GoogleService-Info.plist */; };
 		1F82D0411F1E83CC0044C7D2 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F82D0401F1E83CC0044C7D2 /* AlertHelper.swift */; };
+		1FF0E5731F1EC61400CDF76D /* MorseTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF0E5721F1EC61400CDF76D /* MorseTranslate.swift */; };
 		A4973AA8826B7C0E86065673 /* Pods_MorsecretTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCAAF78FB20482BDAA0CBA36 /* Pods_MorsecretTests.framework */; };
 		CDE140B551E1ABCF2FA88002 /* Pods_MorsecretUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 409FDF685F3B8764E7CAD62B /* Pods_MorsecretUITests.framework */; };
 		DD7A859D7259869908FB17AA /* Pods_Morsecret.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B3C4AA4C0E3D696CFF5013 /* Pods_Morsecret.framework */; };
@@ -78,6 +79,7 @@
 		1F2C879C1F1C2EC700AFF859 /* ChatInputContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatInputContainerView.swift; sourceTree = "<group>"; };
 		1F2C879E1F1C546500AFF859 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1F82D0401F1E83CC0044C7D2 /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
+		1FF0E5721F1EC61400CDF76D /* MorseTranslate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorseTranslate.swift; sourceTree = "<group>"; };
 		409FDF685F3B8764E7CAD62B /* Pods_MorsecretUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MorsecretUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		789C4B54FCA81940214E2723 /* Pods-MorsecretUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorsecretUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MorsecretUITests/Pods-MorsecretUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7BAA901A2836CDA8A90E7DD8 /* Pods-MorsecretUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorsecretUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MorsecretUITests/Pods-MorsecretUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			children = (
 				1F2C87961F1C2E4100AFF859 /* Extensions.swift */,
 				1F82D0401F1E83CC0044C7D2 /* AlertHelper.swift */,
+				1FF0E5721F1EC61400CDF76D /* MorseTranslate.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				1F2C87911F1C2DFA00AFF859 /* ChatLogController.swift in Sources */,
 				1F2C878B1F1C2D9200AFF859 /* MessagesController.swift in Sources */,
 				1F2C875C1F1C25BA00AFF859 /* Morsecret.xcdatamodeld in Sources */,
+				1FF0E5731F1EC61400CDF76D /* MorseTranslate.swift in Sources */,
 				1F82D0411F1E83CC0044C7D2 /* AlertHelper.swift in Sources */,
 				1F2C878D1F1C2DC300AFF859 /* NewMessageController.swift in Sources */,
 				1F2C87891F1C2D4900AFF859 /* LoginController.swift in Sources */,

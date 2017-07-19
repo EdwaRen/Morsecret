@@ -1,9 +1,9 @@
 //
-//  ChatMessageCell.swift
-//  gameofchats
+//  MorseTranslate.swift
+//  Morsecret
 //
-//  Created by Brian Voong on 7/12/16.
-//  Copyright © 2016 letsbuildthatapp. All rights reserved.
+//  Created by Edward Ren on 2017/07/18.
+//  Copyright © 2017 Secretapp. All rights reserved.
 //
 
 import UIKit
@@ -99,6 +99,8 @@ class ChatMessageCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFit
+//        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(goTranslate)))
+
         return imageView
     }()
     
@@ -109,10 +111,16 @@ class ChatMessageCell: UICollectionViewCell {
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomTap)))
+        
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomTap)));
         
         return imageView
     }()
+    
+//    func goTranslate(_ tapGesture: UITapGestureRecognizer) {
+//        self.chatLogController?.translateStringToMorse(text: <#String#>)
+//    return
+//        }
     
     func handleZoomTap(_ tapGesture: UITapGestureRecognizer) {
         if message?.videoUrl != nil {
@@ -180,7 +188,7 @@ class ChatMessageCell: UICollectionViewCell {
         
         bubbleView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         
-        bubbleWidthAnchor = bubbleView.widthAnchor.constraint(equalToConstant: 200)
+        bubbleWidthAnchor = bubbleView.widthAnchor.constraint(equalToConstant: 300)
         bubbleWidthAnchor?.isActive = true
         
         bubbleView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true

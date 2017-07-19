@@ -1,9 +1,9 @@
 //
-//  ViewController.swift
-//  gameofchats
+//  MorseTranslate.swift
+//  Morsecret
 //
-//  Created by Brian Voong on 6/24/16.
-//  Copyright © 2016 letsbuildthatapp. All rights reserved.
+//  Created by Edward Ren on 2017/07/18.
+//  Copyright © 2017 Secretapp. All rights reserved.
 //
 
 import UIKit

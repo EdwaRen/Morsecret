@@ -1,9 +1,9 @@
 //
-//  ChatLogController.swift
-//  gameofchats
+//  MorseTranslate.swift
+//  Morsecret
 //
-//  Created by Brian Voong on 7/7/16.
-//  Copyright © 2016 letsbuildthatapp. All rights reserved.
+//  Created by Edward Ren on 2017/07/18.
+//  Copyright © 2017 Secretapp. All rights reserved.
 //
 
 import UIKit
@@ -314,7 +314,13 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ChatMessageCell
 
-        print("Cell tap detected", messages[indexPath.item].text)
+        if(messages[indexPath.item].fromId != FIRAuth.auth()?.currentUser?.uid  ) {
+            print("Cell tap detected", messages[indexPath.item].text ?? "Uh Oh")
+            let a = MorseTranslate()
+            
+            let morseText: String = a.stringIntoMorseDotsDashes(text: messages[indexPath.item].text!)
+            
+        }
 //        let url = thumbnailFileURLS[indexPath.item]
 //        if UIApplication.sharedApplication().canOpenURL(url) {
 //            UIApplication.sharedApplication().openURL(url)
@@ -497,6 +503,12 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                 self.startingImageView?.isHidden = false
             })
         }
+    }
+    
+    func translateStringToMorse(text: String) {
+        print("\n morse button activated \n")
+        
+        
     }
 }
 
