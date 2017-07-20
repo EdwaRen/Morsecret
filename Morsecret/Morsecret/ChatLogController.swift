@@ -84,8 +84,11 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
         
         collectionView?.keyboardDismissMode = .interactive
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem:  UIBarButtonSystemItem.organize , target: self, action: #selector(showOptions))
+
+        let myTim = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(ChatLogController.setupKeyboardObservers), userInfo: nil, repeats: false)
         
-        setupKeyboardObservers()
+//        setupKeyboardObservers()
     }
     
     lazy var inputContainerView: ChatInputContainerView = {
@@ -93,6 +96,15 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         chatInputContainerView.chatLogController = self
         return chatInputContainerView
     }()
+    
+    func showOptions() {
+        print("Options button clicked")
+        inputContainerView.inputTextField.resignFirstResponder()
+        inputContainerView.inputTextField.text = "...---..."
+        view.endEditing(true)
+    }
+    
+   
     
     func handleUploadTap() {
         let imagePickerController = UIImagePickerController()
@@ -248,8 +260,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     func handleKeyboardDidShow() {
-        if messages.count > 0 {
+        if messages.count > 1 {
             let indexPath = IndexPath(item: messages.count - 1, section: 0)
+            //Occasionally crashes on the line below
             collectionView?.scrollToItem(at: indexPath, at: .top, animated: true)
         }
     }
@@ -293,6 +306,12 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         cell.message = message
         
         cell.textView.text = message.text
+        print(message.text)
+        if (message.text == nil) {
+            cell.morseImageView.isHidden = true
+        } else {
+            cell.morseImageView.isHidden = false
+        }
         
         setupCell(cell, message: message)
         
@@ -315,10 +334,15 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ChatMessageCell
 
         if(messages[indexPath.item].fromId != FIRAuth.auth()?.currentUser?.uid  ) {
-            print("Cell tap detected", messages[indexPath.item].text ?? "Uh Oh")
-            let a = MorseTranslate()
+            print("Cell tap detected", messages[indexPath.item].text)
             
-            let morseText: String = a.stringIntoMorseDotsDashes(text: messages[indexPath.item].text!)
+            if (messages[indexPath.item].text != nil) {
+            
+                let a = MorseTranslate()
+            
+                let morseText: String = a.stringIntoMorseDotsDashes(text: messages[indexPath.item].text!)
+                a.timerMorseToVibrations(text: morseText)
+            }
             
         }
 //        let url = thumbnailFileURLS[indexPath.item]
@@ -341,8 +365,21 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             cell.bubbleViewRightAnchor?.isActive = true
             cell.bubbleViewLeftAnchor?.isActive = false
             
-        } else {
+        } else if (message.text == nil) {
+            //incoming image, grey
+
+            print("hiding morseimageview")
             //incoming gray
+            cell.bubbleView.backgroundColor = UIColor(r: 240, g: 240, b: 240)
+            cell.textView.textColor = UIColor.black
+            cell.profileImageView.isHidden = false
+//            cell.morseImageView.isHidden = true;
+            
+            cell.bubbleViewRightAnchor?.isActive = false
+            cell.bubbleViewLeftAnchor?.isActive = true
+        } else {
+            //incoming text, still grey
+
             cell.bubbleView.backgroundColor = UIColor(r: 240, g: 240, b: 240)
             cell.textView.textColor = UIColor.black
             cell.profileImageView.isHidden = false

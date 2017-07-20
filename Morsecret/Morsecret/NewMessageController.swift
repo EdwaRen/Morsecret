@@ -40,14 +40,14 @@ class NewMessageController: UITableViewController, UISearchBarDelegate {
     }
     
     // called when search button is clicked
-    func searchBarSearchButtonClicked( searchBar: UISearchBar!) {
-        print("search clicked1")
-        searchTextUser = searchBar.text!;
-
-        fetchUser()
-
-        self.view.endEditing(true)
-    }
+//    func searchBarSearchButtonClicked( searchBar: UISearchBar!) {
+//        print("search clicked1")
+//        searchTextUser = searchBar.text!;
+//
+//        fetchUser()
+//
+//        self.view.endEditing(true)
+//    }
   
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
         print("search clicked2")
@@ -64,18 +64,34 @@ class NewMessageController: UITableViewController, UISearchBarDelegate {
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let user = User(dictionary: dictionary)
                 user.id = snapshot.key
-                let indexEmail = user.email?.index((user.email?.startIndex)!, offsetBy: self.searchTextUser.characters.count)
-                let indexName = user.name?.index((user.name?.startIndex)!, offsetBy: self.searchTextUser.characters.count)
-
                 
-                if (user.email?.substring(to: indexEmail!) == self.searchTextUser || user.name?.substring(to: indexName!) == self.searchTextUser) && self.searchTextUser.characters.count > 1  {
-                    self.users.append(user)
-                }
-                //this will crash because of background thread, so lets use dispatch_async to fix
-                DispatchQueue.main.async(execute: {
-                    self.tableView.reloadData()
-                })
+                do {
+                    var appended = false
+                    if (self.searchTextUser.characters.count <= (user.email?.characters.count)!){
+
+                        let indexEmail = try user.email?.index((user.email?.startIndex)!, offsetBy: self.searchTextUser.characters.count)
+                        if user.email?.substring(to: indexEmail!) == self.searchTextUser  && self.searchTextUser.characters.count > 1  {
+                            appended = true
+                            self.users.append(user)
+                        }
+                    }
+                    if (self.searchTextUser.characters.count <= (user.name?.characters.count)! && appended == false){
+                        let indexName = try user.name?.index((user.name?.startIndex)!, offsetBy: self.searchTextUser.characters.count)
+                        if (user.name?.substring(to: indexName!) == self.searchTextUser) && self.searchTextUser.characters.count > 1  {
+                            print(user.name?.characters, " should be printing user name")
+                            self.users.append(user)
+                        }
+                    }
+                
                     
+                    //this will crash because of background thread, so lets use dispatch_async to fix
+                    DispatchQueue.main.async(execute: {
+                        self.tableView.reloadData()
+                    })
+                } catch {
+                    print("something went wrong")
+                }
+                
                 
                 //                user.name = dictionary["name"]
             }

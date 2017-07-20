@@ -8,30 +8,95 @@
 
 import Foundation
 import UIKit
+import AVFoundation
+import MediaPlayer
+import AudioToolbox
+
+
 
 class MorseTranslate {
+    var timer : Timer!
+    var counter: Int = 0;
+    
+
+
+    
+    func timerMorseToVibrations(text: String) {
+//        let charMorse = Array(text.characters)
+//        print(charMorse, " char morse")
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(MorseTranslate.charMorseToVibration(c:)), userInfo: text, repeats: false)
+
+//        for i in 0...text.characters.count-1 {
+//            print(charMorse[i])
+//            timer = Timer.scheduledTimer(timeInterval: TimeInterval(i+1), target: self, selector: #selector(MorseTranslate.charMorseToVibration(c:)), userInfo: text, repeats: false)
+//        }
+        
+    }
+    func AudioServicesPlaySystemSoundWithVibration(_: Int , _: ExpressibleByNilLiteral, _: NSDictionary){};
+
+
+    
+    @objc func charMorseToVibration(c: Timer) {
+
+        let k = timer.userInfo as! String
+        let i = Array(k.characters)
+        print(i[counter])
+        var timeBetweenVibrate: Double = 0.8
+        if (i[counter] == ".") {
+            print("dot")
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+        } else if (i[counter] == "-") {
+            print("dash")
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+            let myTim = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(MorseTranslate.playAlertAgain), userInfo: nil, repeats: false)
+            timeBetweenVibrate += 0.4
+
+        } else if (i[counter] == " ") {
+            print("Space detected")
+        } else {
+            print("ERROR: Morse string to vibration char is unreadable", i)
+        }
+        counter += 1
+        if (counter < k.characters.count) {
+            timer = Timer.scheduledTimer(timeInterval: timeBetweenVibrate, target: self, selector: #selector(MorseTranslate.charMorseToVibration(c:)), userInfo: k, repeats: false)
+        }
+
+    }
+
+    
+    @objc func playAlertAgain() {
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+
+    }
     
     func stringIntoMorseDotsDashes(text: String) -> String {
         var lowerText = text
         var morseText : String = ""
-        if (text == nil) {
+        if (text == "") {
             print("Desired translation element is not a text")
         } else {
             lowerText = text.lowercased()
             let charMessage = Array(lowerText.characters)
             print("lower cased textToMorse message ", lowerText)
-            for i in 1...lowerText.characters.count {
-                morseText += charToDotsDashes(c: charMessage[i])
+            for i in 0...lowerText.characters.count-1 {
+                morseText += MorseTranslate.charToMorse[String(charMessage[i])]!
+                morseText += " "
+
             }
         }
+        print(morseText)
         return morseText
     }
     
-    func charToDotsDashes(c: Character) -> String{
+  
+    
+    func morseIntoString(text: String) -> String {
         
-        return MorseTranslate.charToMorse["c"]!
-        
+        return text
     }
+    
+
+    
     static let morseToChar = [
         ".-" : "a",
         "-..." :  "b",
@@ -131,7 +196,8 @@ class MorseTranslate {
         "(": "-.--.-",
         "\"": ".-..-.",
         "@": ".--.-.",
-        "=": "-...-"
+        "=": "-...-",
+        " ": " "
         
     ];
 
