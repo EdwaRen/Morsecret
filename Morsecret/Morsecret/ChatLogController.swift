@@ -10,20 +10,19 @@ import UIKit
 import Firebase
 import MobileCoreServices
 import AVFoundation
+import MediaPlayer
+
 
 class ChatLogController: UICollectionViewController, UITextFieldDelegate, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+
     var attemptedVideo : Bool? = false {
+        
         didSet {
-//            let myTim = Timer(timeInterval: 1.5, target: self, selector: Selector("showVideoMessageError()"), userInfo: nil, repeats: true);
             let myTimer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(ChatLogController.showVideoMessageError), userInfo: nil, repeats: false)
 
-            print("Detected change in attemptedVideo")
-//            showVideoMessageError()
         }
         willSet {
             print("Detected change in attemptedVideo willset ")
-//            showVideoMessageError()
         }
     }
     var user: User? {
@@ -35,37 +34,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     var messages = [Message]()
-    
-    func observeMessages() {
-        guard let uid = FIRAuth.auth()?.currentUser?.uid, let toId = user?.id else {
-            return
-        }
-        
-        let userMessagesRef = FIRDatabase.database().reference().child("user-messages").child(uid).child(toId)
-        userMessagesRef.observe(.childAdded, with: { (snapshot) in
-            
-            let messageId = snapshot.key
-            let messagesRef = FIRDatabase.database().reference().child("messages").child(messageId)
-            messagesRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                guard let dictionary = snapshot.value as? [String: AnyObject] else {
-                    return
-                }
-                
-                self.messages.append(Message(dictionary: dictionary))
-                DispatchQueue.main.async(execute: {
-                    self.collectionView?.reloadData()
-                    //scroll to the last index
-                    let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
-                    self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
-                })
-                
-            }, withCancel: nil)
-            
-        }, withCancel: nil)
-    }
-    
-    
+    var inputMode = 1;
     
     let cellId = "cellId"
     
@@ -88,6 +57,14 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
 
         let myTim = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(ChatLogController.setupKeyboardObservers), userInfo: nil, repeats: false)
         
+        if (volume == 1) {
+            volume = 0.9;
+        }else if (volume == 0) {
+            volume = 0.1;
+        }
+    
+        listenVolumeButton()
+        
 //        setupKeyboardObservers()
     }
     
@@ -100,43 +77,16 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     func showOptions() {
         print("Options button clicked")
         inputContainerView.inputTextField.resignFirstResponder()
-        inputContainerView.inputTextField.text = "...---..."
-        view.endEditing(true)
-    }
-    
-   
-    
-    func handleUploadTap() {
-        let imagePickerController = UIImagePickerController()
         
-        imagePickerController.allowsEditing = true
-        imagePickerController.delegate = self
-        imagePickerController.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
-        
-        present(imagePickerController, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        if let videoUrl = info[UIImagePickerControllerMediaURL] as? URL {
-            if (attemptedVideo)! {
-                attemptedVideo = false
-            } else {
-                attemptedVideo = true
-            }
-            print("video selected")
-            
-            //Video sending is rather buggy, so only image and chat sending is supported
-            
-//            handleVideoSelectedForUrl(videoUrl)
-        } else {
-            //we selected an image
-            handleImageSelectedForInfo(info as [String : AnyObject])
+        if (inputMode == 0) {
+            inputContainerView.inputTextField.isEnabled = true
+
+        } else if (inputMode == 1) {
+            inputContainerView.inputTextField.isEnabled = false
         }
         
-        dismiss(animated: true, completion: nil)
     }
-    
+       
     func showVideoMessageError() {
         print("SHowing alert controller")
 //        
@@ -151,37 +101,6 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     fileprivate func handleVideoSelectedForUrl(_ url: URL) {
-//        let myTim = Timer(timeInterval: 0.5, target: self, selector: Selector("showVideoMessageError()"), userInfo: nil, repeats: true);
-
-//        let filename = UUID().uuidString + ".mov"
-//        let uploadTask = FIRStorage.storage().reference().child("message_movies").child(filename).putFile(url, metadata: nil, completion: { (metadata, error) in
-//            
-//            if error != nil {
-//                print("Failed upload of video:", error!)
-//                return
-//            }
-//            
-//            if let videoUrl = metadata?.downloadURL()?.absoluteString {
-//                if let thumbnailImage = self.thumbnailImageForFileUrl(url) {
-//                    
-//                    self.uploadToFirebaseStorageUsingImage(thumbnailImage, completion: { (imageUrl) in
-//                        let properties: [String: AnyObject] = ["imageUrl": imageUrl as AnyObject, "imageWidth": thumbnailImage.size.width as AnyObject, "imageHeight": thumbnailImage.size.height as AnyObject, "videoUrl": videoUrl as AnyObject]
-//                        self.sendMessageWithProperties(properties)
-//                        
-//                    })
-//                }
-//            }
-//        })
-//        
-//        uploadTask.observe(.progress) { (snapshot) in
-//            if let completedUnitCount = snapshot.progress?.completedUnitCount {
-//                self.navigationItem.title = String(completedUnitCount)
-//            }
-//        }
-//        
-//        uploadTask.observe(.success) { (snapshot) in
-//            self.navigationItem.title = self.user?.name
-//        }
     }
     
     fileprivate func thumbnailImageForFileUrl(_ fileUrl: URL) -> UIImage? {
@@ -200,43 +119,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         return nil
     }
     
-    fileprivate func handleImageSelectedForInfo(_ info: [String: AnyObject]) {
-        var selectedImageFromPicker: UIImage?
-        
-        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
-            selectedImageFromPicker = editedImage
-        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-            
-            selectedImageFromPicker = originalImage
-        }
-        
-        if let selectedImage = selectedImageFromPicker {
-            uploadToFirebaseStorageUsingImage(selectedImage, completion: { (imageUrl) in
-                self.sendMessageWithImageUrl(imageUrl, image: selectedImage)
-            })
-        }
-    }
-    
-    fileprivate func uploadToFirebaseStorageUsingImage(_ image: UIImage, completion: @escaping (_ imageUrl: String) -> ()) {
-        let imageName = UUID().uuidString
-        let ref = FIRStorage.storage().reference().child("message_images").child(imageName)
-        
-        if let uploadData = UIImageJPEGRepresentation(image, 0.2) {
-            ref.put(uploadData, metadata: nil, completion: { (metadata, error) in
-                
-                if error != nil {
-                    print("Failed to upload image:", error!)
-                    return
-                }
-                
-                if let imageUrl = metadata?.downloadURL()?.absoluteString {
-                    completion(imageUrl)
-                }
-                
-            })
-        }
-    }
-    
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
@@ -254,9 +137,6 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     func setupKeyboardObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         
-        //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(handleKeyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
-        //
-        //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(handleKeyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func handleKeyboardDidShow() {
@@ -365,18 +245,6 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             cell.bubbleViewRightAnchor?.isActive = true
             cell.bubbleViewLeftAnchor?.isActive = false
             
-        } else if (message.text == nil) {
-            //incoming image, grey
-
-            print("hiding morseimageview")
-            //incoming gray
-            cell.bubbleView.backgroundColor = UIColor(r: 240, g: 240, b: 240)
-            cell.textView.textColor = UIColor.black
-            cell.profileImageView.isHidden = false
-//            cell.morseImageView.isHidden = true;
-            
-            cell.bubbleViewRightAnchor?.isActive = false
-            cell.bubbleViewLeftAnchor?.isActive = true
         } else {
             //incoming text, still grey
 
@@ -440,41 +308,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         }
     }
     
-    fileprivate func sendMessageWithImageUrl(_ imageUrl: String, image: UIImage) {
-        let properties: [String: AnyObject] = ["imageUrl": imageUrl as AnyObject, "imageWidth": image.size.width as AnyObject, "imageHeight": image.size.height as AnyObject]
-        sendMessageWithProperties(properties)
-    }
+   
     
-    fileprivate func sendMessageWithProperties(_ properties: [String: AnyObject]) {
-        let ref = FIRDatabase.database().reference().child("messages")
-        let childRef = ref.childByAutoId()
-        let toId = user!.id!
-        let fromId = FIRAuth.auth()!.currentUser!.uid
-        let timestamp = Int(Date().timeIntervalSince1970)
-        
-        var values: [String: AnyObject] = ["toId": toId as AnyObject, "fromId": fromId as AnyObject, "timestamp": timestamp as AnyObject]
-        
-        //append properties dictionary onto values somehow??
-        //key $0, value $1
-        properties.forEach({values[$0] = $1})
-        
-        childRef.updateChildValues(values) { (error, ref) in
-            if error != nil {
-                print(error!)
-                return
-            }
-            
-            self.inputContainerView.inputTextField.text = nil
-            
-            let userMessagesRef = FIRDatabase.database().reference().child("user-messages").child(fromId).child(toId)
-            
-            let messageId = childRef.key
-            userMessagesRef.updateChildValues([messageId: 1])
-            
-            let recipientUserMessagesRef = FIRDatabase.database().reference().child("user-messages").child(toId).child(fromId)
-            recipientUserMessagesRef.updateChildValues([messageId: 1])
-        }
-    }
+    
     
     var startingFrame: CGRect?
     var blackBackgroundView: UIView?
@@ -542,11 +378,118 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         }
     }
     
-    func translateStringToMorse(text: String) {
-        print("\n morse button activated \n")
+    var hello: Bool = false;
+    var volume:Float = AVAudioSession.sharedInstance().outputVolume;
+    var detected: Bool = false;
+    var needASpace: Bool = false; //inserts a space to distinguish words in morse code
+    var counterVibrate:Float = 0;
+    var inputMessage: String = "";
+    
+    
+    var timeCounter = 0;
+    var messageTime = Array(repeating: Array(repeating: -1, count: 2), count: 10000)
+    
+    var spaceTimer: Timer?
+    
+
+
+
+
+    
+//    @IBOutlet weak var inputLabel: UILabel!
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func resetVolume() {
+        let volumeView = MPVolumeView()
+        if let view = volumeView.subviews.first as? UISlider{
+            detected = true;
+            view.value = volume //---0 t0 1.0---
+            //            detected = false;
+            detected = false
+//            let myTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(ChatLogController.resetBool), userInfo: nil, repeats: false);
+            
+        }
+    }
+    
+    func resetBool() {
+        detected = false;
+    }
+    
+    func listenVolumeButton() {
+        let audioSession = AVAudioSession()
+        do {
+            try audioSession.setActive(true)
+        } catch {
+            print("some error")
+        }
+        audioSession.addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.new, context: nil)
+    }
+    
+    
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "outputVolume" {
+            print("click detected");
+            if (detected == false && inputMode == 1){
+                
+                if (AVAudioSession.sharedInstance().outputVolume > volume) {
+                    counterVibrate += 1;
+                    print(counterVibrate, "greater");
+                    inputContainerView.inputTextField.text = inputContainerView.inputTextField.text! + "."
+                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+                    spaceTimer?.invalidate()
+                    spaceTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(ChatLogController.insertSpaceHere), userInfo: nil, repeats: false);
+                    
+//                    spaceTimer?.fire()
+
+                    
+                } else if (AVAudioSession.sharedInstance().outputVolume < volume) {
+                    print(counterVibrate, "less");
+                    counterVibrate += 1;
+                    inputContainerView.inputTextField.text = inputContainerView.inputTextField.text! + "-"
+                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+                    let mytimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(ChatLogController.playAlertAgain), userInfo: nil, repeats: false)
+                    
+                    
+                    spaceTimer?.invalidate()
+
+                    spaceTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(ChatLogController.insertSpaceHere), userInfo: nil, repeats: false);
+
+//                    spaceTimer?.fire()
+
+                } else {
+                    print("volume still the same");
+                    print("Detected", detected);
+                }
+                print(" ");
+                
+                _ = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(ChatLogController.resetVolume), userInfo: nil, repeats: false);
+                
+
+            }
+        }
         
         
     }
+    
+    @objc func playAlertAgain() {
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+        
+    }
+    
+    func insertSpaceHere() {
+        print("Added a space ")
+        inputContainerView.inputTextField.text = inputContainerView.inputTextField.text! + " "
+        
+    }
+   
+
+    
+    
 }
 
 
