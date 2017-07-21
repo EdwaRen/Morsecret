@@ -32,14 +32,22 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             observeMessages()
         }
     }
-    
+    var inputMode : Int = 0;
+    var autoVibrate = false;
     var messages = [Message]()
-    var inputMode = 1;
-    
+
     let cellId = "cellId"
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+
+        
+        
+        _ = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(changeInputMethod), userInfo: nil, repeats: true)
     
 //        let alertController = UIAlertController(title: "Video Transfer Not Supported", message:
 //            "Try limiting communication to text or images", preferredStyle: UIAlertControllerStyle.alert)
@@ -65,7 +73,27 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     
         listenVolumeButton()
         
-//        setupKeyboardObservers()
+        
+        
+       
+    }
+    func isKeyPresentInUserDefaults(key: String) -> Bool {
+        return UserDefaults.standard.object(forKey: key) != nil
+    }
+    
+    func changeInputMethod() {
+        if(isKeyPresentInUserDefaults(key: "input")) {
+            let selected: String = (UserDefaults.standard.object(forKey: "input") as AnyObject) as! String
+            inputMode = Int(selected)!
+        }
+
+        
+        if (inputMode == 0) {
+            inputContainerView.inputTextField.isEnabled = true
+            
+        } else if (inputMode == 1) {
+            inputContainerView.inputTextField.isEnabled = false
+        }
     }
     
     lazy var inputContainerView: ChatInputContainerView = {
@@ -74,16 +102,22 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         return chatInputContainerView
     }()
     
+    func changedInputMode() {
+        
+    }
+    
     func showOptions() {
         print("Options button clicked")
+        
+        let chatOptionsController = ChatOptionsController()
+        chatOptionsController.user = user
+        chatOptionsController.currentMode = inputMode
+        navigationController?.pushViewController(chatOptionsController, animated: true)
+
+        
         inputContainerView.inputTextField.resignFirstResponder()
         
-        if (inputMode == 0) {
-            inputContainerView.inputTextField.isEnabled = true
-
-        } else if (inputMode == 1) {
-            inputContainerView.inputTextField.isEnabled = false
-        }
+        
         
     }
        
@@ -452,7 +486,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                     counterVibrate += 1;
                     inputContainerView.inputTextField.text = inputContainerView.inputTextField.text! + "-"
                     AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
-                    let mytimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(ChatLogController.playAlertAgain), userInfo: nil, repeats: false)
+                    let mytimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ChatLogController.playAlertAgain), userInfo: nil, repeats: false)
                     
                     
                     spaceTimer?.invalidate()
