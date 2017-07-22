@@ -12,10 +12,13 @@ import UIKit
 
 class ChatOptionsController: UIViewController {
     var user: User?
+    
     let keyboardButton = UIButton(type: .system)
-
     let volumeButton = UIButton(type: .system)
+    let vibrateButton = UIButton(type: .system)
+
     var currentMode: Int? = nil
+    var vibrateBool: Bool? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +30,11 @@ class ChatOptionsController: UIViewController {
             keyboardButtonPress()
         } else if (currentMode == 1) {
             volumeButtonPress()
+        }
+        
+        if vibrateBool == true {
+            vibrateButton.setTitleColor(UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0), for: .normal)
+            vibrateButton.backgroundColor = UIColor(red:0.15, green:0.15, blue:0.15, alpha:1.0)
         }
         
         setUpItems()
@@ -55,6 +63,23 @@ class ChatOptionsController: UIViewController {
         keyboardButton.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
     }
     func liveVibrationPress() {
+        
+        if vibrateButton.backgroundColor == UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0) {
+            // Vibrate enabled
+            let defaults = UserDefaults.standard
+            defaults.set("1", forKey: "vibrate")
+            vibrateButton.setTitleColor(UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0), for: .normal)
+            vibrateButton.backgroundColor = UIColor(red:0.15, green:0.15, blue:0.15, alpha:1.0)
+        } else {
+            // Vibrate Disabled
+            let defaults = UserDefaults.standard
+            defaults.set("0", forKey: "input")
+            vibrateButton.setTitleColor(UIColor(red:0.15, green:0.15, blue:0.15, alpha:1.0), for: .normal)
+            vibrateButton.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+        }
+        
+        let defaults = UserDefaults.standard
+        defaults.set("1", forKey: "input")
         
     }
     
@@ -96,6 +121,7 @@ class ChatOptionsController: UIViewController {
         
         view.addSubview(keyboardButton)
         view.addSubview(volumeButton)
+        view.addSubview(vibrateButton)
         
         keyboardButton.translatesAutoresizingMaskIntoConstraints = false
         keyboardButton.setTitle("     KEYBOARD", for: .normal)
@@ -120,12 +146,27 @@ class ChatOptionsController: UIViewController {
         volumeButton.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         volumeButton.addTarget(self, action: #selector(volumeButtonPress), for: .touchUpInside)
         
-        
         volumeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         volumeButton.topAnchor.constraint(equalTo: keyboardButton.bottomAnchor, constant: 4).isActive = true
         volumeButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 1).isActive = true
         volumeButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 1).isActive = true
         volumeButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        
+        
+        vibrateButton.translatesAutoresizingMaskIntoConstraints = false
+        vibrateButton.setTitle("     AUTO VIBRATE", for: .normal)
+        vibrateButton.contentHorizontalAlignment = .left
+        vibrateButton.titleLabel?.font = UIFont(name: "Raleway-Regular", size: 21)
+        vibrateButton.setTitleColor(UIColor(red:0.15, green:0.15, blue:0.15, alpha:1.0), for: .normal)
+        vibrateButton.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
+        vibrateButton.addTarget(self, action: #selector(volumeButtonPress), for: .touchUpInside)
+        
+        vibrateButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+        vibrateButton.topAnchor.constraint(equalTo: volumeButton.bottomAnchor, constant: 40).isActive = true
+        vibrateButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 1).isActive = true
+        vibrateButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 1).isActive = true
+        vibrateButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         
         

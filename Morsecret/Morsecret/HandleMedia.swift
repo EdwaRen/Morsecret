@@ -29,9 +29,10 @@ extension ChatLogController {
                 guard let dictionary = snapshot.value as? [String: AnyObject] else {
                     return
                 }
-                
+
                 self.messages.append(Message(dictionary: dictionary))
                 DispatchQueue.main.async(execute: {
+
                     self.collectionView?.reloadData()
                     //scroll to the last index
                     let indexPath = IndexPath(item: self.messages.count - 1, section: 0)

@@ -86,6 +86,10 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             let selected: String = (UserDefaults.standard.object(forKey: "input") as AnyObject) as! String
             inputMode = Int(selected)!
         }
+        if(isKeyPresentInUserDefaults(key: "vibrate")) {
+            let selected2: String = (UserDefaults.standard.object(forKey: "vibrate") as AnyObject) as! String
+            autoVibrate = Bool(selected2)!
+        }
 
         
         if (inputMode == 0) {
@@ -112,6 +116,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         let chatOptionsController = ChatOptionsController()
         chatOptionsController.user = user
         chatOptionsController.currentMode = inputMode
+        chatOptionsController.vibrateBool = autoVibrate
         navigationController?.pushViewController(chatOptionsController, animated: true)
 
         
@@ -160,6 +165,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     
     override var inputAccessoryView: UIView? {
         get {
+            print("inputcontainerview and accessoryview")
             return inputContainerView
         }
     }
@@ -207,6 +213,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("returning messages.count")
         return messages.count
     }
     
@@ -220,7 +227,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         cell.message = message
         
         cell.textView.text = message.text
-        print(message.text)
+        print("Message here ", message.text ?? "no message")
         if (message.text == nil) {
             cell.morseImageView.isHidden = true
         } else {
@@ -474,9 +481,10 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                     counterVibrate += 1;
                     print(counterVibrate, "greater");
                     inputContainerView.inputTextField.text = inputContainerView.inputTextField.text! + "."
-                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+//                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+                    AudioServicesPlaySystemSound(1520)
                     spaceTimer?.invalidate()
-                    spaceTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(ChatLogController.insertSpaceHere), userInfo: nil, repeats: false);
+                    spaceTimer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(ChatLogController.insertSpaceHere), userInfo: nil, repeats: false);
                     
 //                    spaceTimer?.fire()
 
@@ -485,13 +493,14 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                     print(counterVibrate, "less");
                     counterVibrate += 1;
                     inputContainerView.inputTextField.text = inputContainerView.inputTextField.text! + "-"
-                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+//                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+                    AudioServicesPlaySystemSound(1521)
                     let mytimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ChatLogController.playAlertAgain), userInfo: nil, repeats: false)
                     
                     
                     spaceTimer?.invalidate()
 
-                    spaceTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(ChatLogController.insertSpaceHere), userInfo: nil, repeats: false);
+                    spaceTimer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(ChatLogController.insertSpaceHere), userInfo: nil, repeats: false);
 
 //                    spaceTimer?.fire()
 
@@ -511,7 +520,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     @objc func playAlertAgain() {
-        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+//        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
         
     }
     
