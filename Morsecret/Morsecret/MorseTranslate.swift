@@ -44,10 +44,10 @@ class MorseTranslate {
         var timeBetweenVibrate: Double = 0.8
         if (i[counter] == ".") {
             print("dot")
-            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+            AudioServicesPlaySystemSound(1519)
         } else if (i[counter] == "-") {
             print("dash")
-            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+            AudioServicesPlaySystemSound(1520);
             let myTim = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(MorseTranslate.playAlertAgain), userInfo: nil, repeats: false)
             timeBetweenVibrate += 0.4
 
@@ -65,11 +65,24 @@ class MorseTranslate {
 
     
     @objc func playAlertAgain() {
-        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
-
+        AudioServicesPlaySystemSound(1520)
     }
     
     func stringIntoMorseDotsDashes(text: String) -> String {
+        var isPureMorse: Bool = true;
+        
+        for j in  0...text.characters.count-1 {
+            let c = Array(text.characters);
+            if c[j] != "-" && c[j] != "." && c[j] != " " {
+                isPureMorse = false;
+            } else {
+//                isPureMorse = false;
+            }
+        }
+        if (isPureMorse) {
+            return text;
+        }
+        
         var lowerText = text
         var morseText : String = ""
         if (text == "") {

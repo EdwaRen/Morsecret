@@ -26,8 +26,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         }
     }
     var user: User? {
-        didSet {
-            navigationItem.title = user?.name
+        didSet {             navigationItem.title = user?.name
             
             observeMessages()
         }
@@ -88,7 +87,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         }
         if(isKeyPresentInUserDefaults(key: "vibrate")) {
             let selected2: String = (UserDefaults.standard.object(forKey: "vibrate") as AnyObject) as! String
-            autoVibrate = Bool(selected2)!
+            autoVibrate = ((Int(selected2) != nil))
         }
 
         
@@ -112,7 +111,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     
     func showOptions() {
         print("Options button clicked")
-        
+        print("options yeah", inputMode," ", autoVibrate);
         let chatOptionsController = ChatOptionsController()
         chatOptionsController.user = user
         chatOptionsController.currentMode = inputMode
@@ -476,11 +475,12 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         if keyPath == "outputVolume" {
             print("click detected");
             if (detected == false && inputMode == 1){
-                
+                detected = true;
                 if (AVAudioSession.sharedInstance().outputVolume > volume) {
                     counterVibrate += 1;
-                    print(counterVibrate, "greater");
                     inputContainerView.inputTextField.text = inputContainerView.inputTextField.text! + "."
+                    print(counterVibrate, "greater2", inputContainerView.inputTextField.text);
+
 //                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
                     AudioServicesPlaySystemSound(1520)
                     spaceTimer?.invalidate()
@@ -490,12 +490,13 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
 
                     
                 } else if (AVAudioSession.sharedInstance().outputVolume < volume) {
-                    print(counterVibrate, "less");
                     counterVibrate += 1;
                     inputContainerView.inputTextField.text = inputContainerView.inputTextField.text! + "-"
+                    print(counterVibrate, "less2", inputContainerView.inputTextField.text);
+
 //                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
-                    AudioServicesPlaySystemSound(1521)
-                    let mytimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ChatLogController.playAlertAgain), userInfo: nil, repeats: false)
+                    AudioServicesPlaySystemSound(1520)
+//                    let mytimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ChatLogController.playAlertAgain), userInfo: nil, repeats: false)
                     
                     
                     spaceTimer?.invalidate()
@@ -509,8 +510,22 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                     print("Detected", detected);
                 }
                 print(" ");
+                let inputText = inputContainerView.inputTextField.text;
+                if ((inputText?.characters.count)! >= 6) {
+                    print("last 6");
+
+                    let last6 = inputText!.substring(from:inputText!.index(inputText!.endIndex, offsetBy: -6))
+                    print("last 6", last6);
+
+                    if (last6 == " .-.-.") {
+                        print("sending message");
+                        handleSend();
+                        return;
+                    }
+                    
+                }
                 
-                _ = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(ChatLogController.resetVolume), userInfo: nil, repeats: false);
+                _ = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(ChatLogController.resetVolume), userInfo: nil, repeats: false);
                 
 
             }
@@ -520,7 +535,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     @objc func playAlertAgain() {
-//        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+        AudioServicesPlaySystemSound(1520)
         
     }
     

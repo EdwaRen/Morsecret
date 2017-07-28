@@ -32,6 +32,8 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
+var canVibrate = false;
+
 
 class MessagesController: UITableViewController {
     
@@ -39,6 +41,7 @@ class MessagesController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         
@@ -98,7 +101,7 @@ class MessagesController: UITableViewController {
             
             let userId = snapshot.key
             FIRDatabase.database().reference().child("user-messages").child(uid).child(userId).observe(.childAdded, with: { (snapshot) in
-                
+                print("fetching message");
                 let messageId = snapshot.key
                 self.fetchMessageWithMessageId(messageId)
                 
@@ -125,7 +128,40 @@ class MessagesController: UITableViewController {
                 let message = Message(dictionary: dictionary)
                 
                 if let chatPartnerId = message.chatPartnerId() {
+                    print("after fetch", message.text);
                     self.messagesDictionary[chatPartnerId] = message
+                    
+                    if canVibrate == false {
+                        _ = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.allowVibrations), userInfo: nil,  repeats: true)
+//                        canVibrate = true;
+                    }
+                    
+                    guard let uid = FIRAuth.auth()?.currentUser?.uid else {
+                        //for some reason uid = nil
+                        print("uid is null")
+                        return
+                    }
+                    print(uid, chatPartnerId);
+                    
+                    if canVibrate == true && message.fromId != uid  {
+                        
+                        if(self.isKeyPresentInUserDefaults(key: "vibrate")) {
+                            let selected2: String = (UserDefaults.standard.object(forKey: "vibrate") as AnyObject) as! String
+                            let autoVirbate2: Bool;
+                            autoVirbate2 = ((Int(selected2) != nil))
+                            
+                            print("autovibrate2 ", autoVirbate2, " ", selected2)
+                            if autoVirbate2 == true {
+                                let a = MorseTranslate()
+                                let morseText: String = a.stringIntoMorseDotsDashes(text: message.text!);
+                                a.timerMorseToVibrations(text: morseText);
+                            }
+                            }
+                            
+                        }
+                        
+                   
+                    
                 }
                 
                 self.attemptReloadOfTable()
@@ -138,6 +174,14 @@ class MessagesController: UITableViewController {
         self.timer?.invalidate()
         
         self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false)
+    }
+    
+    func allowVibrations() {
+        canVibrate = true;
+    }
+    
+    func isKeyPresentInUserDefaults(key: String) -> Bool {
+        return UserDefaults.standard.object(forKey: key) != nil
     }
     
     var timer: Timer?

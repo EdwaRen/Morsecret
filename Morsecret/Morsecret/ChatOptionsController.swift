@@ -22,28 +22,37 @@ class ChatOptionsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setUpItems()
+
         view.backgroundColor = UIColor.white
         self.title = "Options"
-        
-        if (currentMode == 0) {
+        print("currentmode ", currentMode);
+        if (currentMode! == 0) {
+            print("keyboardpress ", currentMode);
+
             keyboardButtonPress()
-        } else if (currentMode == 1) {
+        } else if (currentMode! == 1) {
+            print("volumepress ", currentMode);
+
             volumeButtonPress()
         }
         
         if vibrateBool == true {
             vibrateButton.setTitleColor(UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0), for: .normal)
             vibrateButton.backgroundColor = UIColor(red:0.15, green:0.15, blue:0.15, alpha:1.0)
+        } else {
+            vibrateButton.setTitleColor(UIColor(red:0.15, green:0.15, blue:0.15, alpha:1.0), for: .normal)
+            vibrateButton.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         }
         
-        setUpItems()
         
     }
     
    
     
     func keyboardButtonPress() {
+        print("keyboard function pressed ", currentMode);
+
         let defaults = UserDefaults.standard
         defaults.set("0", forKey: "input")
         keyboardButton.setTitleColor(UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0), for: .normal)
@@ -62,7 +71,7 @@ class ChatOptionsController: UIViewController {
         keyboardButton.setTitleColor(UIColor(red:0.15, green:0.15, blue:0.15, alpha:1.0), for: .normal)
         keyboardButton.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
     }
-    func liveVibrationPress() {
+    func vibrateButtonPress() {
         
         if vibrateButton.backgroundColor == UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0) {
             // Vibrate enabled
@@ -78,8 +87,8 @@ class ChatOptionsController: UIViewController {
             vibrateButton.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         }
         
-        let defaults = UserDefaults.standard
-        defaults.set("1", forKey: "input")
+//        let defaults = UserDefaults.standard
+//        defaults.set("1", forKey: "input")
         
     }
     
@@ -160,7 +169,7 @@ class ChatOptionsController: UIViewController {
         vibrateButton.titleLabel?.font = UIFont(name: "Raleway-Regular", size: 21)
         vibrateButton.setTitleColor(UIColor(red:0.15, green:0.15, blue:0.15, alpha:1.0), for: .normal)
         vibrateButton.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
-        vibrateButton.addTarget(self, action: #selector(volumeButtonPress), for: .touchUpInside)
+        vibrateButton.addTarget(self, action: #selector(vibrateButtonPress), for: .touchUpInside)
         
         vibrateButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
         vibrateButton.topAnchor.constraint(equalTo: volumeButton.bottomAnchor, constant: 40).isActive = true
