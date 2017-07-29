@@ -482,7 +482,12 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                     print(counterVibrate, "greater2", inputContainerView.inputTextField.text);
 
 //                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
-                    AudioServicesPlaySystemSound(1520)
+                    let modelName = UIDevice.current.modelName
+                    if modelName != "iPhone 5" && modelName != "iPhone 5c" && modelName != "iPhone 5s" {
+                        AudioServicesPlaySystemSound(1520)
+                    } else {
+                        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+                    }
                     spaceTimer?.invalidate()
                     spaceTimer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(ChatLogController.insertSpaceHere), userInfo: nil, repeats: false);
                     
@@ -495,8 +500,14 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                     print(counterVibrate, "less2", inputContainerView.inputTextField.text);
 
 //                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
-                    AudioServicesPlaySystemSound(1520)
-//                    let mytimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ChatLogController.playAlertAgain), userInfo: nil, repeats: false)
+                    let modelName = UIDevice.current.modelName
+
+                    if modelName != "iPhone 5" && modelName != "iPhone 5c" && modelName != "iPhone 5s" {
+                        AudioServicesPlaySystemSound(1520)
+                    } else {
+                        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+                    }
+                    let mytimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ChatLogController.playAlertAgain), userInfo: nil, repeats: false)
                     
                     
                     spaceTimer?.invalidate()
@@ -535,7 +546,13 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     @objc func playAlertAgain() {
-        AudioServicesPlaySystemSound(1520)
+        let modelName = UIDevice.current.modelName
+
+        if modelName != "iPhone 5" && modelName != "iPhone 5c" && modelName != "iPhone 5s" {
+            AudioServicesPlaySystemSound(1520)
+        } else {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+        }
         
     }
     

@@ -44,10 +44,22 @@ class MorseTranslate {
         var timeBetweenVibrate: Double = 0.8
         if (i[counter] == ".") {
             print("dot")
-            AudioServicesPlaySystemSound(1519)
+            let modelName = UIDevice.current.modelName
+            
+            if modelName != "iPhone 5" && modelName != "iPhone 5c" && modelName != "iPhone 5s" {
+                AudioServicesPlaySystemSound(1520)
+            } else {
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+            }
         } else if (i[counter] == "-") {
             print("dash")
-            AudioServicesPlaySystemSound(1520);
+            let modelName = UIDevice.current.modelName
+            
+            if modelName != "iPhone 5" && modelName != "iPhone 5c" && modelName != "iPhone 5s" {
+                AudioServicesPlaySystemSound(1520)
+            } else {
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+            }
             let myTim = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(MorseTranslate.playAlertAgain), userInfo: nil, repeats: false)
             timeBetweenVibrate += 0.4
 
@@ -65,7 +77,13 @@ class MorseTranslate {
 
     
     @objc func playAlertAgain() {
-        AudioServicesPlaySystemSound(1520)
+        let modelName = UIDevice.current.modelName
+        
+        if modelName != "iPhone 5" && modelName != "iPhone 5c" && modelName != "iPhone 5s" {
+            AudioServicesPlaySystemSound(1520)
+        } else {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate));
+        }
     }
     
     func stringIntoMorseDotsDashes(text: String) -> String {

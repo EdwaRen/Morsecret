@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F046FB21F2BBAFB007D4FF0 /* ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F046FB11F2BBAFB007D4FF0 /* ModelName.swift */; };
 		1F2C87541F1C25BA00AFF859 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C87531F1C25BA00AFF859 /* AppDelegate.swift */; };
 		1F2C87561F1C25BA00AFF859 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C87551F1C25BA00AFF859 /* ViewController.swift */; };
 		1F2C87591F1C25BA00AFF859 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F2C87571F1C25BA00AFF859 /* Main.storyboard */; };
@@ -28,6 +29,8 @@
 		1F2C879D1F1C2EC700AFF859 /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2C879C1F1C2EC700AFF859 /* ChatInputContainerView.swift */; };
 		1F2C879F1F1C546500AFF859 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F2C879E1F1C546500AFF859 /* GoogleService-Info.plist */; };
 		1F82D0411F1E83CC0044C7D2 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F82D0401F1E83CC0044C7D2 /* AlertHelper.swift */; };
+		1FA4CA1A1F2AF96000D514C1 /* ViewControllerInitial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4CA191F2AF96000D514C1 /* ViewControllerInitial.swift */; };
+		1FA4CA1C1F2AFD8C00D514C1 /* OptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4CA1B1F2AFD8C00D514C1 /* OptionViewController.swift */; };
 		1FC1DE381F2150E0004523B9 /* HandleMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC1DE371F2150E0004523B9 /* HandleMedia.swift */; };
 		1FC1DE3A1F225E0E004523B9 /* ChatOptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC1DE391F225E0E004523B9 /* ChatOptionsController.swift */; };
 		1FC1DE4F1F227FFB004523B9 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1FC1DE3C1F227FFB004523B9 /* OFL.txt */; };
@@ -73,6 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F046FB11F2BBAFB007D4FF0 /* ModelName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelName.swift; sourceTree = "<group>"; };
 		1F2C87501F1C25BA00AFF859 /* Morsecret.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Morsecret.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F2C87531F1C25BA00AFF859 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F2C87551F1C25BA00AFF859 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 		1F2C879C1F1C2EC700AFF859 /* ChatInputContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatInputContainerView.swift; sourceTree = "<group>"; };
 		1F2C879E1F1C546500AFF859 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1F82D0401F1E83CC0044C7D2 /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
+		1FA4CA191F2AF96000D514C1 /* ViewControllerInitial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerInitial.swift; sourceTree = "<group>"; };
+		1FA4CA1B1F2AFD8C00D514C1 /* OptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionViewController.swift; sourceTree = "<group>"; };
 		1FC1DE371F2150E0004523B9 /* HandleMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandleMedia.swift; sourceTree = "<group>"; };
 		1FC1DE391F225E0E004523B9 /* ChatOptionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatOptionsController.swift; sourceTree = "<group>"; };
 		1FC1DE3C1F227FFB004523B9 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
@@ -238,6 +244,7 @@
 				1F82D0401F1E83CC0044C7D2 /* AlertHelper.swift */,
 				1FF0E5721F1EC61400CDF76D /* MorseTranslate.swift */,
 				1FC1DE371F2150E0004523B9 /* HandleMedia.swift */,
+				1F046FB11F2BBAFB007D4FF0 /* ModelName.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -260,6 +267,8 @@
 				1F2C878E1F1C2DE700AFF859 /* LoginController+handlers.swift */,
 				1F2C87901F1C2DFA00AFF859 /* ChatLogController.swift */,
 				1FC1DE391F225E0E004523B9 /* ChatOptionsController.swift */,
+				1FA4CA191F2AF96000D514C1 /* ViewControllerInitial.swift */,
+				1FA4CA1B1F2AFD8C00D514C1 /* OptionViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -619,6 +628,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F2C87911F1C2DFA00AFF859 /* ChatLogController.swift in Sources */,
+				1FA4CA1C1F2AFD8C00D514C1 /* OptionViewController.swift in Sources */,
 				1F2C878B1F1C2D9200AFF859 /* MessagesController.swift in Sources */,
 				1FC1DE3A1F225E0E004523B9 /* ChatOptionsController.swift in Sources */,
 				1F2C875C1F1C25BA00AFF859 /* Morsecret.xcdatamodeld in Sources */,
@@ -626,11 +636,13 @@
 				1FC1DE381F2150E0004523B9 /* HandleMedia.swift in Sources */,
 				1F82D0411F1E83CC0044C7D2 /* AlertHelper.swift in Sources */,
 				1F2C878D1F1C2DC300AFF859 /* NewMessageController.swift in Sources */,
+				1F046FB21F2BBAFB007D4FF0 /* ModelName.swift in Sources */,
 				1F2C87891F1C2D4900AFF859 /* LoginController.swift in Sources */,
 				1F2C879D1F1C2EC700AFF859 /* ChatInputContainerView.swift in Sources */,
 				1F2C87931F1C2E1A00AFF859 /* User.swift in Sources */,
 				1F2C879B1F1C2EAF00AFF859 /* ChatMessageCell.swift in Sources */,
 				1F2C878F1F1C2DE700AFF859 /* LoginController+handlers.swift in Sources */,
+				1FA4CA1A1F2AF96000D514C1 /* ViewControllerInitial.swift in Sources */,
 				1F2C87951F1C2E2E00AFF859 /* Message.swift in Sources */,
 				1F2C87991F1C2E6800AFF859 /* UserCell.swift in Sources */,
 				1F2C87561F1C25BA00AFF859 /* ViewController.swift in Sources */,
