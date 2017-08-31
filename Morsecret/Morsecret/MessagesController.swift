@@ -55,10 +55,6 @@ class MessagesController: UITableViewController {
         //        observeMessages()
         
         tableView.allowsMultipleSelectionDuringEditing = true
-        createInfoButton();
-
-        
-        
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -346,54 +342,6 @@ class MessagesController: UITableViewController {
         loginController.messagesController = self
         present(loginController, animated: true, completion: nil)
     }
-    @IBOutlet var infoButton: UIButton!
     
-    func createInfoButton() {
-        var infoButton2: UIButton = {
-            let button = UIButton(type: .system)
-            button.backgroundColor = UIColor(r: 80, g: 101, b: 161)
-            button.setTitle("Help", for: .normal)
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.setTitleColor(UIColor.white, for: .normal)
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-            
-            button.addTarget(self, action: #selector(showOptionsController), for: .touchUpInside)
-            
-            return button
-        }()
-        
-        infoButton = infoButton2
-        
-        
-//        view.bringSubview(toFront: infoButton);
-        self.parent?.view.addSubview(infoButton);
-        //BOOOOYEAAAAH IT WORKS  JKABSDNMASJHDN!!!!!!!!!! (I hate my life)
-        infoButton.centerXAnchor.constraint(equalTo: (self.parent?.view.centerXAnchor)!).isActive = true;
-        infoButton.bottomAnchor.constraint(equalTo: (self.parent?.view.bottomAnchor)!).isActive = true;
-        infoButton.widthAnchor.constraint(equalToConstant: 100).isActive = true;
-        infoButton.heightAnchor.constraint(equalToConstant: 30).isActive = true;
-        
-        let defaults = UserDefaults.standard
-        defaults.set("0", forKey: "info")
-
-    }
-    func showOptionsController() {
-        navigationController?.pushViewController(OptionViewController(), animated: true);
-//        infoButton.isHidden = true;
-        _ = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.showButton), userInfo: nil,  repeats: true)
-    }
-
-    func showButton() {
-        
-        if self.isViewLoaded && (self.view.window != nil) {
-            infoButton.isHidden = false;
-        } else {
-            infoButton.isHidden = true;
-
-        }
-        
-        
-       
-    }
 }
 
