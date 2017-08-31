@@ -37,15 +37,15 @@ The Recycle_Can.ipa file is the only important file needed for installation, the
 This installation works for iTunes 12.x
 Drag the .ipa file into the apps section of your iTunes Library, as seen below
 
-![Tutorial 1](./images/tutorial1.png)
+![Tutorial 1](./images/tutorial_1.png)
 
 Now connect your device in iTunes, select your device, and go to the 'apps' tab. There, scroll down to the Recycle Can app and click 'Install'. This will change the button to 'Will Install'
 
-![Tutorial 2](./images/tutorial2.png)
+![Tutorial 2](./images/tutorial_2.png)
 
 Finally, hit the 'Apply' button below to apply this installation.
 
-![Tutorial 3](./images/tutorial3.png)
+![Tutorial 3](./images/tutorial_3.png)
 
 
 
@@ -61,7 +61,7 @@ Haptic feedback is **enabled** by default.
 
 ## Information Input
 
-![Vibrate](./images/iphone_volume.jpg)
+![Vibrate](./images/iphone_Controls.jpg)
 
 
 Inputting information can also optionally hidden and made very difficult for others to observe. This uses a novel method of manipulating the volume input buttons to be interpreted as morse code. While 'Volume Input' is on, clicking the up volume button will write a 'dot' in the chat text box, while clicking the down volume button will write a 'dash' in the chat text box. This enables messages to be sent in simple morse code while maintaining the utmost level of secrecy. While this does require having hands on the phone, the fact that a keyboard is no longer necessary means that messages can be sent without physically looking at the device screen. For example, a user can write and send 'Hello' simply from their pockets and 'feel' the response from someone else in morse code vibrations, without ever having to look at the device itself. The format for inputting morse code is the same as outputting. A detailed set of rules is listed below.
